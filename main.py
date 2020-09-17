@@ -53,3 +53,39 @@ for iConstrutora in container:
         "b", string="CONSTRUÇÃO CIVIL").next_sibling
     construtora = construtora[3:].strip()
     nomeConstrutora.append(construtora)
+
+# Nome do engenheiro responsável
+nomeEngenheiro = []
+for iEngenheiro in container:
+    procuraDado = iEngenheiro.find(string="ENG. RESPONSÁVEL OBRA")
+    if procuraDado == None:
+        nomeEngenheiro.append("Sem dado")
+    else:
+        newPath = procuraDado.find_parent("tr")
+        engenheiro = newPath.td.string
+        nomeEngenheiro.append(engenheiro)
+
+# Telefone do engenheiro responsável
+telEngenheiro = []
+for iTelEngenheiro in container:
+    procuraDado = iTelEngenheiro.find(string="ENG. RESPONSÁVEL OBRA")
+    if procuraDado == None:
+        telEngenheiro.append("Sem dado")
+    else:
+        newPath = procuraDado.find_parent("tr")
+        telEng = newPath.find(string=re.compile("\(\d{2}\) \d{4}-\d{4}"))
+        telEngenheiro.append(telEng)
+
+# E-mail do engenheiro responsável
+emailEngenheiro = []
+for iemailEngenheiro in container:
+    procuraDado = iemailEngenheiro.find(string="ENG. RESPONSÁVEL OBRA")
+    if procuraDado == None:
+        emailEngenheiro.append("Sem dado")
+    else:
+        newPath = procuraDado.find_parent("tr")
+        emailEng = newPath.find(string=re.compile("@|restrito"))
+        if emailEng == None:
+            emailEngenheiro.append("Sem dado")
+        else:
+            emailEngenheiro.append(emailEng)
