@@ -38,3 +38,10 @@ for icepObra in container:
     cep = cep.strip()
     cep = re.sub(r"\n| {1,}", "", cep)
     cepObras.append(cep)
+
+# Estado das obras
+estagioObras = []
+for iEstagio in container:
+    estagio = iEstagio.find("b", string="Estágio").next_sibling
+    estagio = estagio[2:].strip()
+    estagioObras.append(estagio)
