@@ -16,8 +16,8 @@ TODO:
     - [ ] nome 
     - [ ] telefone 
     - [ ] email
-  - [ ] engenheiro
-    - [ ] nome 
-    - [ ] telefone 
-    - [ ] email
+  - [X] engenheiro
+    - [X] nome 
+    - [X] telefone 
+    - [X] email
 - [ ] xlsx generator
