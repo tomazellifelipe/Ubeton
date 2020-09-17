@@ -45,3 +45,11 @@ for iEstagio in container:
     estagio = iEstagio.find("b", string="Estágio").next_sibling
     estagio = estagio[2:].strip()
     estagioObras.append(estagio)
+
+# Nome da construtora
+nomeConstrutora = []
+for iConstrutora in container:
+    construtora = iConstrutora.find(
+        "b", string="CONSTRUÇÃO CIVIL").next_sibling
+    construtora = construtora[3:].strip()
+    nomeConstrutora.append(construtora)
