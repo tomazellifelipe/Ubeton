@@ -55,6 +55,14 @@ for iConstrutora in container:
     construtora = construtora[3:].strip()
     nomeConstrutora.append(construtora)
 
+# E-mail da construtora
+emailConstrutora = []
+for iConstrutora in container:
+    emailConstr = iConstrutora.find("b", string="Site:").next_sibling
+    emailConstr = emailConstr.strip()
+    emailConstrutora.append(emailConstr)
+
+
 # ----------------------------------------------------------------
 # Nome do engenheiro responsável
 nomeEngenheiro = []
@@ -135,9 +143,9 @@ for iComprador in container:
 # ------------------------------------------------
 data = {"Nome da Obra": nomeObras, "Endereço da Obra": enderecoObras,
         "UF da Obra": ufObras, "CEP da Obra": cepObras,
-        "Estágio da Obra": estagioObras, "Construtora": nomeConstrutora,
+        "Estágio da Obra": estagioObras, "Construtora": nomeConstrutora, "E-mail Construtora": emailConstrutora,
         "Engenheiro": nomeEngenheiro, "Tel Eng.": telEngenheiro,
         "E-mail Eng.": emailEngenheiro, "Comprador": nomeComprador,
         "Tel Comprador": telComprador, "E-mail Comprador": emailComprador}
 
-dt = pd.DataFrame(data).to_excel("Dados_Intec.xlsx")
+dt = pd.DataFrame(data).to_excel("Dados_Intec2.xlsx")
