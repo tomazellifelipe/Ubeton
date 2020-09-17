@@ -20,4 +20,4 @@ TODO:
     - [X] nome 
     - [X] telefone 
     - [X] email
-- [ ] xlsx generator
+- [X] xlsx generator
