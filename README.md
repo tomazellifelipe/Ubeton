@@ -7,10 +7,10 @@ Ler arquivo .html e gerar arquivo .xlsx com as informações requisitadas pelo c
 TODO:
 
 - [ ] html scraper
-  - [ ] Info da obra
+  - [x] Info da obra
     - [x] nome
-    - [ ] endereço
-    - [ ] estágio
+    - [X] endereço
+    - [x] estágio
   - [ ] nome da construtora
   - [ ] comprador
     - [ ] nome 
