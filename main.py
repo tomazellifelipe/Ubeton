@@ -22,3 +22,11 @@ for iEndereco in container:
     endereco = endereco[2:].strip()
     endereco = re.sub(r"\n| {2,}", " ", endereco)
     enderecoObras.append(endereco)
+
+# Endereço: uf das obras
+ufObras = []
+for iufObra in container:
+    uf = iufObra.find("b", string="Estado:").next_sibling
+    uf = uf.strip()
+    uf = re.sub(r"\n| -", "", uf)
+    ufObras.append(uf)
