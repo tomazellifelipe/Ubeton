@@ -12,6 +12,7 @@ TODO:
     - [X] endereço
     - [x] estágio
   - [X] nome da construtora
+  - [X] email da construtora
   - [X] comprador
     - [X] nome 
     - [X] telefone 
