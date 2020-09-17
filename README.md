@@ -11,7 +11,7 @@ TODO:
     - [x] nome
     - [X] endereço
     - [x] estágio
-  - [ ] nome da construtora
+  - [X] nome da construtora
   - [ ] comprador
     - [ ] nome 
     - [ ] telefone 
