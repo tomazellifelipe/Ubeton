@@ -30,3 +30,11 @@ for iufObra in container:
     uf = uf.strip()
     uf = re.sub(r"\n| -", "", uf)
     ufObras.append(uf)
+
+# Endereço: cep das obras
+cepObras = []
+for icepObra in container:
+    cep = icepObra.find("b", string="CEP:").next_sibling
+    cep = cep.strip()
+    cep = re.sub(r"\n| {1,}", "", cep)
+    cepObras.append(cep)
