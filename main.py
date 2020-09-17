@@ -46,6 +46,7 @@ for iEstagio in container:
     estagio = estagio[2:].strip()
     estagioObras.append(estagio)
 
+# ----------------------------------------------------------------
 # Nome da construtora
 nomeConstrutora = []
 for iConstrutora in container:
@@ -54,6 +55,7 @@ for iConstrutora in container:
     construtora = construtora[3:].strip()
     nomeConstrutora.append(construtora)
 
+# ----------------------------------------------------------------
 # Nome do engenheiro responsável
 nomeEngenheiro = []
 for iEngenheiro in container:
@@ -89,3 +91,41 @@ for iemailEngenheiro in container:
             emailEngenheiro.append("Sem dado")
         else:
             emailEngenheiro.append(emailEng)
+
+# ----------------------------------------------------------------
+# Nome do comprador
+nomeComprador = []
+for iComprador in container:
+    procuraDado = iComprador.find(string="COMPRADOR / MATERIAIS")
+    if procuraDado == None:
+        nomeComprador.append("Sem dado")
+    else:
+        newPath = procuraDado.find_parent("tr")
+        comprador = newPath.td.string
+        nomeComprador.append(comprador)
+
+# Telefone do comprador
+telComprador = []
+for iComprador in container:
+    procuraDado = iComprador.find(string="COMPRADOR / MATERIAIS")
+    if procuraDado == None:
+        telComprador.append("Sem dado")
+    else:
+        newPath = procuraDado.find_parent("tr")
+        telCompra = newPath.find(string=re.compile("\(\d{2}\) \d{4}-\d{4}"))
+        telComprador.append(telCompra)
+
+
+# E-mail do comprador
+emailComprador = []
+for iComprador in container:
+    procuraDado = iComprador.find(string="COMPRADOR / MATERIAIS")
+    if procuraDado == None:
+        emailComprador.append("Sem dado")
+    else:
+        newPath = procuraDado.find_parent("tr")
+        emailCompra = newPath.find(string=re.compile("@|restrito"))
+        if emailEng == None:
+            emailComprador.append("Sem dado")
+        else:
+            emailComprador.append(emailCompra)
