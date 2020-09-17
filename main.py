@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import re
-
+import pandas as pd
 
 with open("example.html", encoding="utf8") as fp:
     soup = BeautifulSoup(fp, features="html.parser")
@@ -129,3 +129,15 @@ for iComprador in container:
             emailComprador.append("Sem dado")
         else:
             emailComprador.append(emailCompra)
+
+# ------------------------------------------------
+# PANDAS E EXCEL
+# ------------------------------------------------
+data = {"Nome da Obra": nomeObras, "Endereço da Obra": enderecoObras,
+        "UF da Obra": ufObras, "CEP da Obra": cepObras,
+        "Estágio da Obra": estagioObras, "Construtora": nomeConstrutora,
+        "Engenheiro": nomeEngenheiro, "Tel Eng.": telEngenheiro,
+        "E-mail Eng.": emailEngenheiro, "Comprador": nomeComprador,
+        "Tel Comprador": telComprador, "E-mail Comprador": emailComprador}
+
+dt = pd.DataFrame(data).to_excel("Dados_Intec.xlsx")
