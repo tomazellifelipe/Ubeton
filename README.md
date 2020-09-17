@@ -22,3 +22,4 @@ TODO:
     - [X] telefone 
     - [X] email
 - [X] xlsx generator
+- [ ] otimização (código lento, diminuir complexidade)
