@@ -85,15 +85,17 @@ def htmlUbeton(fileName):
 lista = htmlUbeton(r".\\HTML\\example.html")
 
 
-def dataFrameUbeton(listaDeObras):
-    dictObras = {"Obra": [], "Endereço": [], "UF": [], "CEP": [],
-                 "Estágio": [], "Construtora": [], "Email": [],
-                 "Engenheiro": [], "Telefone-Eng": [], "Email-Eng": [],
-                 "Comprador": [], "Telefone-Comp": [], "Email-Comp": []}
+def dataFrameUbeton(listaDeObras, *args):
+    dictObras = {}
+    for arg in args:
+        dictObras[arg] = []
     for obra in listaDeObras:
         for key, value in zip(dictObras.keys(), obra.data):
             dictObras[key].append(value)
     return pd.DataFrame(dictObras)
 
 
-dataFrameUbeton(lista).to_excel(r".\\EXCEL\\deletemelater.xlsx")
+dataFrameUbeton(lista, 'Obra', 'Endereco', 'UF', 'CEP', 'Estágio',
+                'Construtora', 'E-mail', 'Engenheiro', 'Telefone Eng.',
+                'E-mail Eng.', 'Comprador', 'Telefone Compr.',
+                'E-mail Compr.').to_excel(r".\\EXCEL\\deletemelater.xlsx")
