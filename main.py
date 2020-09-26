@@ -73,10 +73,10 @@ def htmlUbeton(fileName):
     return todasAsObras
 
 
-lista = htmlUbeton("example.html")
+lista = htmlUbeton(".\HTML\example.html")
 
 
-def dictUbeton(listaDeObras):
+def dataFrameUbeton(listaDeObras):
     dictObras = {"Obra": [], "Endereço": [], "UF": [], "CEP": [],
                  "Estágio": [], "Construtora": [], "Email": [],
                  "Engenheiro": [], "Telefone-Eng": [], "Email-Eng": [],
@@ -87,16 +87,4 @@ def dictUbeton(listaDeObras):
     return pd.DataFrame(dictObras)
 
 
-print(dictUbeton(lista))
-
-"""# ------------------------------------------------
-# PANDAS E EXCEL
-# ------------------------------------------------
-data = {"Nome da Obra": nomeObras, "Endereço da Obra": enderecoObras,
-        "UF da Obra": ufObras, "CEP da Obra": cepObras,
-        "Estágio da Obra": estagioObras, "Construtora": nomeConstrutora, "E-mail Construtora": emailConstrutora,
-        "Engenheiro": nomeEngenheiro, "Tel Eng.": telEngenheiro,
-        "E-mail Eng.": emailEngenheiro, "Comprador": nomeComprador,
-        "Tel Comprador": telComprador, "E-mail Comprador": emailComprador}
-
-dt = pd.DataFrame(data).to_excel("Dados_Intec2.xlsx")"""
+dataFrameUbeton(lista).to_excel(".\EXCEL\deletemelater.xlsx")
