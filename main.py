@@ -1,7 +1,15 @@
-from bs4 import BeautifulSoup
 import re
+
 import pandas as pd
+from bs4 import BeautifulSoup
+
 from Data import Obra
+
+
+def cleanString(string):
+    if string is not None:
+        return re.sub(r"\s{2,}|^:\s|-$|^-\s", "", string.strip())
+    return string
 
 
 def htmlUbeton(fileName):
@@ -16,16 +24,16 @@ def htmlUbeton(fileName):
         obra = Obra()
         dadosDaObraPath = path.find(
             "td", style="width:85% !important;")
-        obra.nome = dadosDaObraPath.find(
-            "b", string="Nome da Obra").next_sibling
-        obra.endereco = dadosDaObraPath.find(
-            "b", string="Endereço").next_sibling
-        obra.estado = dadosDaObraPath.find(
-            "b", string="Estado:").next_sibling
-        obra.cep = dadosDaObraPath.find(
-            "b", string="CEP:").next_sibling
-        obra.estagio = dadosDaObraPath.find(
-            "b", string="Estágio").next_sibling
+        obra.nome = cleanString(dadosDaObraPath.find(
+            "b", string="Nome da Obra").next_sibling)
+        obra.endereco = cleanString(dadosDaObraPath.find(
+            "b", string="Endereço").next_sibling)
+        obra.estado = cleanString(dadosDaObraPath.find(
+            "b", string="Estado:").next_sibling)
+        obra.cep = cleanString(dadosDaObraPath.find(
+            "b", string="CEP:").next_sibling)
+        obra.estagio = cleanString(dadosDaObraPath.find(
+            "b", string="Estágio").next_sibling)
 
         # CONTADOS DA OBRA
         contatosDaObraPath = path.find(
@@ -39,12 +47,13 @@ def htmlUbeton(fileName):
             obra.telEngenheiro = None
             obra.emailEngenheiro = None
         else:
-            obra.eng = engenheiroPath.find_previous_sibling("td").string
+            obra.eng = cleanString(
+                engenheiroPath.find_previous_sibling("td").string)
             engPath_tr = engenheiroPath.find_parent("tr")
-            obra.telEngenheiro = engPath_tr.find(
-                string=re.compile("\(\d{2}\) \d{4}-\d{4}"))
-            obra.emailEngenheiro = engPath_tr.find(
-                string=re.compile("@|restrito"))
+            obra.telEngenheiro = cleanString(engPath_tr.find(
+                string=re.compile(r"\(\d{2}\) \d{4}-\d{4}")))
+            obra.emailEngenheiro = cleanString(engPath_tr.find(
+                string=re.compile("@|restrito")))
 
         compradorPath = contatosDaObraPath.find(
             "td", string="COMPRADOR / MATERIAIS")
@@ -54,26 +63,26 @@ def htmlUbeton(fileName):
             obra.telComprador = None
             obra.emailComprador = None
         else:
-            obra.comprador = compradorPath.find_previous_sibling(
-                "td").string
-            obra.telComprador = compradorPath.find_parent(
+            obra.comprador = cleanString(compradorPath.find_previous_sibling(
+                "td").string)
+            obra.telComprador = cleanString(compradorPath.find_parent(
                 "tr").find(
-                string=re.compile("\(\d{2}\) \d{4}-\d{4}"))
-            obra.emailComprador = compradorPath.find_parent(
+                string=re.compile(r"\(\d{2}\) \d{4}-\d{4}")))
+            obra.emailComprador = cleanString(compradorPath.find_parent(
                 "tr").find(
-                string=re.compile("@|restrito"))
+                string=re.compile("@|restrito")))
 
-        obra.nomeCon = path.find(
-            "b", string="CONSTRUÇÃO CIVIL").next_sibling
-        obra.emailCon = path.find(
-            "b", string="Site:").next_sibling
+        obra.nomeCon = cleanString(path.find(
+            "b", string="CONSTRUÇÃO CIVIL").next_sibling)
+        obra.emailCon = cleanString(path.find(
+            "b", string="Site:").next_sibling)
         obra.parseData()
         todasAsObras.append(obra)
 
     return todasAsObras
 
 
-lista = htmlUbeton(".\HTML\example.html")
+lista = htmlUbeton(r".\\HTML\\example.html")
 
 
 def dataFrameUbeton(listaDeObras):
@@ -87,4 +96,4 @@ def dataFrameUbeton(listaDeObras):
     return pd.DataFrame(dictObras)
 
 
-dataFrameUbeton(lista).to_excel(".\EXCEL\deletemelater.xlsx")
+dataFrameUbeton(lista).to_excel(r".\\EXCEL\\deletemelater.xlsx")
