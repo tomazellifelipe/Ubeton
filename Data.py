@@ -16,7 +16,6 @@ class Obra:
         self.data = []
 
     def parseData(self):
-        self.data = [self.nome, self.endereco, self.estado, self.cep,
-                     self.estagio, self.nomeCon, self.emailCon,
-                     self.engenheiro, self.telEngenheiro, self.emailEngenheiro,
-                     self.comprador, self.telComprador, self.emailComprador]
+        for value in self.__dict__.values():
+            if value is not []:
+                self.data.append(value)
