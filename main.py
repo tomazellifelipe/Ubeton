@@ -47,7 +47,7 @@ def htmlUbeton(fileName):
             obra.telEngenheiro = None
             obra.emailEngenheiro = None
         else:
-            obra.eng = cleanString(
+            obra.engenheiro = cleanString(
                 engenheiroPath.find_previous_sibling("td").string)
             engPath_tr = engenheiroPath.find_parent("tr")
             obra.telEngenheiro = cleanString(engPath_tr.find(
@@ -82,7 +82,7 @@ def htmlUbeton(fileName):
     return todasAsObras
 
 
-lista = htmlUbeton(r".\\HTML\\example.html")
+lista = htmlUbeton(r".\\HTML\\INTECBRASIL - Obras PR SC 20-10.html")
 
 
 def dataFrameUbeton(listaDeObras, *args):
@@ -98,4 +98,4 @@ def dataFrameUbeton(listaDeObras, *args):
 dataFrameUbeton(lista, 'Obra', 'Endereco', 'UF', 'CEP', 'Estágio',
                 'Construtora', 'E-mail', 'Engenheiro', 'Telefone Eng.',
                 'E-mail Eng.', 'Comprador', 'Telefone Compr.',
-                'E-mail Compr.').to_excel(r".\\EXCEL\\deletemelater.xlsx")
+                'E-mail Compr.').to_excel(r".\\EXCEL\\file20102020.xlsx")
